@@ -210,12 +210,15 @@ def save_data(agents: list):
         json.dump(agents, f, indent=2, ensure_ascii=False)
     
     # 保存 CSV（便于数据分析）
-    if agents:
-        import csv
-        with open(AGENTS_CSV, "w", newline="", encoding="utf-8") as f:
+    import csv
+    with open(AGENTS_CSV, "w", newline="", encoding="utf-8") as f:
+        if agents:
             writer = csv.DictWriter(f, fieldnames=agents[0].keys())
             writer.writeheader()
             writer.writerows(agents)
+        else:
+            # 空数据时写入表头
+            f.write("name,url,description,language,stars_total,stars_today,forks,x_mentions,score,updated\n")
     
     print(f"✅ 数据已保存: {AGENTS_JSON}, {AGENTS_CSV}")
 

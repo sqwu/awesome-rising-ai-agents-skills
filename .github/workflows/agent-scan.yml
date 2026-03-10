@@ -1,0 +1,36 @@
+name: Daily Agent Heat Scan
+
+on:
+  schedule:
+    - cron: '0 8 * * *'   # 每天 UTC 8点（北京时间16点）
+  workflow_dispatch:      # 手动触发测试
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write     # 允许推送代码
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install apify-client pandas
+
+      - name: Run Apify Scan & Update
+        env:
+          APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python scan_agents.py
+
+      - name: Commit & Push Updates
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/agents.json data/agents.csv README.md
+          git commit -m "🤖 Auto update: daily rising agents scan ($(date +%Y-%m-%d))" || echo "No changes"
+          git push

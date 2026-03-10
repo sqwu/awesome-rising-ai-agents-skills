@@ -19,8 +19,23 @@
 
 ---
 
+## 📊 今日热门榜单（自动更新）
+
+> 🤖 此榜单每天自动更新，基于 GitHub Trending 和 X 平台热度数据计算
+
+| 排名 | 项目 | 今日新增⭐ | X提及 | 综合热度 |
+|:---:|:---|:---:|:---:|:---:|
+| 🥇 | [n8n](https://github.com/n8n-io/n8n) | +0 | 0 | 0.0 |
+| 🥈 | [AutoGPT](https://github.com/Significant-Gravitas/AutoGPT) | +0 | 0 | 0.0 |
+| 🥉 | [langflow](https://github.com/langflow-ai/langflow) | +0 | 0 | 0.0 |
+
+*等待首次自动扫描...*
+
+---
+
 ## 📑 目录
 
+- [今日热门榜单](#-今日热门榜单自动更新)
 - [自主代理 (Autonomous Agents)](#-自主代理-autonomous-agents)
 - [多智能体系统 (Multi-Agent Systems)](#-多智能体系统-multi-agent-systems)
 - [工作流自动化 (Workflow Automation)](#-工作流自动化-workflow-automation)
@@ -132,6 +147,24 @@
 - **描述**: 精选的可运行应用集合，包含 RAG、Agent 和多智能体团队，使用各种模型
 - **热度**: ⭐ 数月内 2千+ 星标；高参与度
 - **特点**: 快速崛起；在实用 Agent 示例和学习方面评分高
+
+---
+
+## ⚙️ 自动化说明
+
+本项目采用 **Apify + GitHub Actions** 实现每日自动扫描：
+
+### 🔧 技术栈
+- **Apify**: 云端爬虫服务，抓取 GitHub Trending 和 X(Twitter) 数据
+- **GitHub Actions**: 每天 UTC 8:00 (北京时间 16:00) 自动运行
+- **评分算法**: 综合 GitHub 星标增长、X 平台提及数等多维度数据
+
+### 🚀 手动触发
+如需立即更新，可进入仓库 Actions 页面手动触发工作流。
+
+### 💰 成本
+- Apify 免费额度：每月 $5（足够每日扫描数千条数据）
+- GitHub Actions：免费
 
 ---
 

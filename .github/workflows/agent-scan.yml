@@ -32,6 +32,11 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/agents.json data/agents.csv README.md
-          git commit -m "🤖 Auto update: daily rising agents scan ($(date +%Y-%m-%d))" || echo "No changes"
-          git push
+          # 检查文件是否存在，存在才添加
+          if [ -f "data/agents.json" ]; then
+            git add data/agents.json data/agents.csv README.md
+            git commit -m "🤖 Auto update: daily rising agents scan ($(date +%Y-%m-%d))" || echo "No changes to commit"
+            git push
+          else
+            echo "No data files generated, skipping commit"
+          fi

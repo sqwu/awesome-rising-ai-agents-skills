@@ -225,7 +225,11 @@ def main():
     print("=" * 50)
     
     if not APIFY_TOKEN:
-        print("❌ 错误: 未设置 APIFY_TOKEN 环境变量")
+        print("⚠️ 警告: 未设置 APIFY_TOKEN 环境变量，生成示例数据")
+        # 创建示例数据目录和空文件
+        os.makedirs(DATA_DIR, exist_ok=True)
+        sample_data = []
+        save_data(sample_data)
         return
     
     # 初始化客户端

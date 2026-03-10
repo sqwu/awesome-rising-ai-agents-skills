@@ -1,5 +1,6 @@
 name: Daily Agent Heat Scan
 
+# 自动扫描 AI Agent 热度并更新榜单
 on:
   schedule:
     - cron: '0 8 * * *'   # 每天 UTC 8点（北京时间16点）
